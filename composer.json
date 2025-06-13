@@ -1,0 +1,28 @@
+{
+    "name": "recruitmenttasks/module-order-comment",
+    "description": "Magento 2 module that adds special configurable comment to order by queue.",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "require": {
+        "php": "^8.3",
+        "magento/framework": "^103.0",
+        "magento/module-sales": "^103.0",
+        "magento/module-message-queue": "^103.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "RecruitmentTasks\\OrderComment\\": ""
+        }
+    },
+    "license": [
+        "MIT"
+    ],
+    "authors": [
+        {
+            "name": "Wojciech Mastej"
+        }
+    ]
+}
