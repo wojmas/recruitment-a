@@ -28,11 +28,13 @@ class PublishOrderToQueue implements ObserverInterface
      */
     public function execute(Observer $observer): void
     {
-        $order = $observer->getEvent()->getOrder();
-        $this->logger->error('Wysyłanie ID zamówienia do kolejki: ' . $order->getId());
-        if ($order && $order->getId()) {
-            $this->publisher->publish((int) $order->getId());
-            $this->logger->error('Wysłano');
+        try {
+            $order = $observer->getEvent()->getOrder();
+            if ($order && $order->getId()) {
+                $this->publisher->publish((int) $order->getId());
+            }
+        } catch (\Throwable $e) {
+            $this->logger->error('Error while sending order ID to queue: ' . $e->getMessage());
         }
     }
 }
